@@ -266,10 +266,11 @@ async function buildGHA (targetBranch, options) {
   jobRequestedCount++;
 
   try {
-    // TODO: replace WORKFLOW_FILENAME with the correct name of the WOA GHA file.
-    const response = await octokit.request('POST /repos/electron/electron/actions/workflows/WORKFLOW_FILENAME/dispatches', {
+    const response = await octokit.request('POST /repos/electron/electron/actions/workflows/electron_woa_testing/dispatches', {
       ref: options.commit,
-      inputs: {}
+      inputs: {
+        appveyor_job_id: options.appveyorJobId
+      }
     });
   } catch (err) {
     console.log('Problem calling GitHub Actions to get build definitions: ', err);

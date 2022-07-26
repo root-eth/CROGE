@@ -226,7 +226,7 @@ deploy_script:
           & python script\release\uploaders\upload.py --verbose
         }
       } elseif (Test-Path Env:\TEST_WOA) {
-        node script/release/ci-release-build.js $env:APPVEYOR_REPO_BRANCH --job=electron-woa-testing --ci=GHA --commit=$env:APPVEYOR_REPO_COMMIT
+        node script/release/ci-release-build.js --job=electron-woa-testing --ci=GHA --appveyorJobId=$env:APPVEYOR_JOB_ID --commit=$env:APPVEYOR_REPO_COMMIT $env:APPVEYOR_REPO_BRANCH
       }
 on_finish:
   # Uncomment this lines to enable RDP
